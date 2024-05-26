@@ -3,21 +3,21 @@
 @tailwind utilities;
 
 * {
-    @apply font-sans bg-slate-100 text-slate-800;
+  @apply font-sans bg-slate-100 text-slate-800;
 }
 
-main { 
-    @apply flex flex-col items-center gap-10 py-10 mx-4;
+main {
+  @apply flex flex-col items-center gap-10 py-10 mx-4;
 }
 
 h1 {
-    @apply text-2xl font-semibold;
+  @apply text-2xl font-semibold;
 }
 
 input {
-    @apply border-slate-800 border-2 outline-none px-2 text-lg rounded-sm w-full;
+  @apply border-slate-800 border-2 outline-none px-2 text-lg rounded-sm;
 }
 
 button {
-    @apply p-2 bg-slate-800 shadow-md rounded-sm font-semibold text-white
+  @apply p-2 bg-slate-800 shadow-md rounded-sm font-semibold text-white;
 }

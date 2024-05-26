@@ -12,22 +12,20 @@ export interface Product {
   images: [string];
 }
 
-export interface Categories {
-  smartphones: number,
-  laptops: number,
-  fragances: number,
-  skincare: number,
-  groceries: number,
-  homeDecoration: number
-}
+export type Category = {
+  name: string;
+  count: number;
+};
+
+export type Categories = Category[];
 
 export interface ProductContextType {
-  items: Product[] | null,
-  setItems: (items: Product[] | null) => void,
-  product: Product | null,
-  setProduct: (product: Product | null) => void,
-  message: string | null,
-  setMessage: (message: string | null) => void,
-  search: string | null,
-  setSearch: (search: string | null) => void
+  items: Product[] | null;
+  setItems: (items: Product[] | null) => void;
+  product: Product | null;
+  setProduct: (product: Product | null) => void;
+  message: string | null;
+  setMessage: (message: string | null) => void;
+  search: string | null;
+  setSearch: (search: string | null) => void;
 }

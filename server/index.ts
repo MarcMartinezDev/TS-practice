@@ -33,7 +33,7 @@ router.get("/items", (req: Request, res: Response) => {
     const data = fs.readFileSync("./products.json", "utf-8");
     const parsedData: Data = JSON.parse(data);
     const query = parsedData.products.filter(
-      (product) =>
+      product =>
         product.category.toLowerCase().match(searchedValue.toLowerCase()) ||
         product.title.toLowerCase().match(searchedValue.toLowerCase())
     );
@@ -55,9 +55,7 @@ router.get("/items/:id", (req: Request, res: Response) => {
   try {
     const data = fs.readFileSync("./products.json", "utf-8");
     const parsedData: Data = JSON.parse(data);
-    const query = parsedData.products.find(
-      (product) => product.id === parsedId
-    );
+    const query = parsedData.products.find(product => product.id === parsedId);
     if (!query) return res.status(404).json({});
     res.status(200).json(query);
   } catch (error) {

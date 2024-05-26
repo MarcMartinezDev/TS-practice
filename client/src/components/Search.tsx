@@ -25,7 +25,7 @@ const Search = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4">
       <input type="text" ref={input} />
       <button onClick={handleButton}>Buscar</button>
     </div>

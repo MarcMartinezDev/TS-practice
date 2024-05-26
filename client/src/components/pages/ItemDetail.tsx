@@ -1,8 +1,10 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { findItem } from "../../api/requests";
 import { useAppContext } from "../../context/ContextProvider";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import DetailedCard from "../DetailedCard";
+import Search from "../Search";
 
 const ItemDetail = () => {
   const { id } = useParams();
@@ -19,10 +21,10 @@ const ItemDetail = () => {
   }, []);
 
   return (
-    <div>
-      <p>{product?.title}</p>
-      <p>{product?.category}</p>
-    </div>
+    <main>
+      <Search />
+      {product ? <DetailedCard product={product} /> : <p>No product found</p>}
+    </main>
   );
 };
 

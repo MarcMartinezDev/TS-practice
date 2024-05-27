@@ -2,7 +2,7 @@ import { Product } from "../types";
 
 const DetailedCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <div className="flex flex-col items-center text-center gap-5">
+    <div className="flex flex-col items-center text-center gap-5 shadow-[0px_0px_2px_black] p-4 rounded-md">
       <h2 className="font-bold">{product.category.toUpperCase()}</h2>
       <img
         src={`/${product.category}.png`}
@@ -35,6 +35,7 @@ const DetailedCard: React.FC<{ product: Product }> = ({ product }) => {
           Only {product.stock} left !
         </p>
       </div>
+      <button>Add to Chart</button>
     </div>
   );
 };

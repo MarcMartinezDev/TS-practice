@@ -8,7 +8,7 @@ import Search from "../Search";
 
 const ItemDetail = () => {
   const { id } = useParams();
-  const { product, setProduct } = useAppContext();
+  const { product, setProduct, search } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {

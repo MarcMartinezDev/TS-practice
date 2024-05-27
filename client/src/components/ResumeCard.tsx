@@ -5,7 +5,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="flex items-center shadow-[0px_0px_1px_black] my-2 p-4 rounded-md"
+      className="flex items-center shadow-[0px_0px_1px_black] my-2 p-4 rounded-md cursor-pointer hover:bg-slate-200 transition-all"
       onClick={() => {
         navigate(`/item/${product.id}`);
       }}
@@ -16,6 +16,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           alt={product.title}
           width={80}
           height={80}
+          className="bg-transparent"
         />
       </div>
       <div className="flex flex-col m-auto w-full rounded-md gap-2">

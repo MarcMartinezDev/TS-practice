@@ -19,25 +19,22 @@ app.listen(process.env.PORT || 3000, () => {
 
 /** Routes */
 
-app.get("/", (req: Request, res: Response) => {
-  const init: string = "Hello API";
-  res.send(init);
-});
-
 router.get("/items", (req: Request, res: Response) => {
   const { q } = req.query;
 
   const searchedValue: string = q ? q.toString() : "";
+
+  const filteredValue = searchedValue.replace("(", "").replace(")", "");
 
   try {
     const data = fs.readFileSync("./products.json", "utf-8");
     const parsedData: Data = JSON.parse(data);
     const query = parsedData.products.filter(
       product =>
-        product.category.toLowerCase().match(searchedValue.toLowerCase()) ||
-        product.title.toLowerCase().match(searchedValue.toLowerCase())
+        product.category.toLowerCase().match(filteredValue.toLowerCase()) ||
+        product.title.toLowerCase().match(filteredValue.toLowerCase())
     );
-    if (query.length < 1) return res.status(404).json([]);
+    if (query.length < 1) return res.status(200).json([]);
     res.status(200).json(query);
   } catch (error) {
     console.log(error);
@@ -56,7 +53,7 @@ router.get("/items/:id", (req: Request, res: Response) => {
     const data = fs.readFileSync("./products.json", "utf-8");
     const parsedData: Data = JSON.parse(data);
     const query = parsedData.products.find(product => product.id === parsedId);
-    if (!query) return res.status(404).json({});
+    if (!query) return res.status(200).json({});
     res.status(200).json(query);
   } catch (error) {
     console.log(error);

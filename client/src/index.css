@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 * {
-  @apply font-sans bg-slate-100 text-slate-800;
+  @apply font-sans text-slate-800;
 }
 
 main {
-  @apply flex flex-col min-h-screen justify-center items-center gap-10 py-10 mx-4;
+  @apply flex flex-col min-h-screen items-center gap-10 py-10 mx-4 sm:w-2/3 sm:m-auto lg:w-1/2;
 }
 
 h1 {

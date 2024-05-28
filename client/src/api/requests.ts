@@ -8,7 +8,7 @@ export const findItems = async (query: string): Promise<[Product]> => {
     return res;
   } catch (error) {
     console.error(error);
-    throw new Error("Error al hacer la petición.");
+    throw new Error("Error");
   }
 };
 
@@ -20,6 +20,6 @@ export const findItem = async (id: string): Promise<Product> => {
     return res;
   } catch (error) {
     console.error(error);
-    throw new Error("Error al hacer la petición.");
+    throw new Error("Error");
   }
 };

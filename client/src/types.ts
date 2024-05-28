@@ -26,6 +26,6 @@ export interface ProductContextType {
   setProduct: (product: Product | null) => void;
   message: string | null;
   setMessage: (message: string | null) => void;
-  search: string | null;
-  setSearch: (search: string | null) => void;
+  search: string;
+  setSearch: (search: string) => void;
 }

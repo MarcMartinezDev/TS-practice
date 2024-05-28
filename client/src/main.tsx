@@ -1,11 +1,11 @@
+import "./index.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App.tsx";
+import ContextProvider from "./context/ContextProvider.tsx";
+import ItemDetail from "./components/pages/ItemDetail.tsx";
+import Items from "./components/pages/Items.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
-import ContextProvider from "./context/ContextProvider.tsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Items from "./components/pages/Items.tsx";
-import ItemDetail from "./components/pages/ItemDetail.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ContextProvider>
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </ContextProvider>
   </React.StrictMode>
 );

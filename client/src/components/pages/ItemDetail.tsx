@@ -8,12 +8,12 @@ import Search from "../Search";
 
 const ItemDetail = () => {
   const { id } = useParams();
-  const { product, setProduct, search } = useAppContext();
+  const { product, setProduct } = useAppContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getItem = async () => {
-      const res = await findItem(id ? id : "1");
+      const res = await findItem(id ? id : "0");
       if (!res.id) return navigate("/");
       setProduct(res);
     };
@@ -23,7 +23,7 @@ const ItemDetail = () => {
   return (
     <main>
       <Search />
-      {product ? <DetailedCard product={product} /> : <p>No product found</p>}
+      {product && <DetailedCard product={product} />}
     </main>
   );
 };

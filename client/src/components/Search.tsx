@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "react";
 import { useAppContext } from "../context/ContextProvider";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useRef, useEffect } from "react";
 
 const Search = () => {
   const input = useRef<HTMLInputElement>(null);
@@ -43,7 +43,9 @@ const Search = () => {
         value={search ? search : ""}
       />
       {location.pathname !== "/items" && (
-        <button onClick={handleButton} className="lg:w-1/2 lg:m-auto">Search</button>
+        <button onClick={handleButton} className="lg:w-1/2 lg:m-auto">
+          Search
+        </button>
       )}
     </div>
   );

@@ -1,15 +1,24 @@
-import express, { Request, Response } from "express";
 import { Data } from "./types";
-import fs from "node:fs";
 import { Router } from "express";
 import cors from "cors";
+import express, { Request, Response } from "express";
+import fs from "node:fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /** server config */
 
 const app = express();
 const router = Router();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 app.use("/api", router);
 
@@ -27,7 +36,10 @@ router.get("/items", (req: Request, res: Response) => {
   const filteredValue = searchedValue.replace("(", "").replace(")", "");
 
   try {
-    const data = fs.readFileSync("./products.json", "utf-8");
+    const data = fs.readFileSync(
+      path.resolve(__dirname, "products.json"),
+      "utf8"
+    );
     const parsedData: Data = JSON.parse(data);
     const query = parsedData.products.filter(
       product =>
@@ -50,7 +62,10 @@ router.get("/items/:id", (req: Request, res: Response) => {
   const parsedId: number = parseInt(id);
 
   try {
-    const data = fs.readFileSync("./products.json", "utf-8");
+    const data = fs.readFileSync(
+      path.resolve(__dirname, "products.json"),
+      "utf8"
+    );
     const parsedData: Data = JSON.parse(data);
     const query = parsedData.products.find(product => product.id === parsedId);
     if (!query) return res.status(200).json({});

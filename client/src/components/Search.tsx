@@ -1,52 +1,55 @@
 import { useAppContext } from "../context/ContextProvider";
 import { useNavigate, useLocation, Link } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 
 const Search = () => {
   const input = useRef<HTMLInputElement>(null);
-  const { search, setSearch } = useAppContext();
+  const { setSearch } = useAppContext();
   const navigate = useNavigate();
   const location = useLocation();
-  const searchParam = new URLSearchParams(location.search);
-  const param = searchParam.get("search");
-
-  useEffect(() => {
-    if (param) setSearch(param);
-  }, [param]);
 
   const handleButton = () => {
-    navigate(`/items?search=${search}`);
+    if (input.current) {
+      const newSearch = input.current.value;
+      setSearch(newSearch);
+      navigate(`/items?search=${newSearch}`);
+    }
   };
 
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="static top-0 w-full">
       {location.pathname !== "/" && (
-        <Link to={"/"} className="w-fit m-auto">
-          <img
-            src="/shop.png"
-            alt="bazar online logo"
-            width={80}
-            className="drop-shadow-md"
-          />
-        </Link>
+        <div className="w-fit m-auto mb-4 min-h-[80px]">
+          <Link to={"/"}>
+            <img
+              src="/shop.png"
+              alt="bazar online logo"
+              width={80}
+              className="drop-shadow-md"
+            />
+          </Link>
+        </div>
       )}
-      <input
-        type="text"
-        ref={input}
-        onChange={() => {
-          if (input.current) {
-            setSearch(input.current.value);
-          }
-        }}
-        placeholder="laptop, iphone, perfume..."
-        className="w-full lg:w-1/2 lg:m-auto"
-        value={search ? search : ""}
-      />
-      {location.pathname !== "/items" && (
-        <button onClick={handleButton} className="lg:w-1/2 lg:m-auto">
+      <div
+        className={`w-full flex gap-4 justify-center items-center ${
+          location.pathname === "/items" || "/items/" ? "flex-row" : "flex-col"
+        }`}
+      >
+        <input
+          type="text"
+          ref={input}
+          placeholder="laptop, iphone, perfume..."
+          className="w-full lg:w-1/2 p-1"
+        />
+        <button
+          onClick={handleButton}
+          className={`${
+            location.pathname === "/items" || "/items/" ? "w-fit" : "w-full lg:w-1/2 m-auto"
+          }`}
+        >
           Search
         </button>
-      )}
+      </div>
     </div>
   );
 };

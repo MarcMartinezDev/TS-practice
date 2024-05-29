@@ -16,6 +16,7 @@ const ContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [message, setMessage] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
   const [product, setProduct] = useState<Product | null>(null);
+
   return (
     <AppContext.Provider
       value={{

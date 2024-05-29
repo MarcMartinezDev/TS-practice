@@ -12,6 +12,7 @@ const ItemDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setProduct(null);
     const getItem = async () => {
       const res = await findItem(id ? id : "0");
       if (!res.id) return navigate("/");
@@ -23,7 +24,11 @@ const ItemDetail = () => {
   return (
     <main>
       <Search />
-      {product && <DetailedCard product={product} />}
+      {product !== null ? (
+        <DetailedCard product={product} />
+      ) : (
+        <p className="text-lg font-semibold">Loading...</p>
+      )}
     </main>
   );
 };
